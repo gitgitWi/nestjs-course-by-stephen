@@ -32,3 +32,11 @@ npm run dev
 # or
 npx ts-node-dev src/main.ts
 ```
+
+## File Naming Conventions
+
+- 1 클래스 1 파일
+  - 일부 예외는 있음
+- Class names shoul include the kind of thing we are creating
+- Name of class and name of file should always match up
+- Filename template: _`name.type_of_thing.ts`_
