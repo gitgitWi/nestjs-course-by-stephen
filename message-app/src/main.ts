@@ -1,9 +1,13 @@
 import { NestFactory } from '@nestjs/core';
-import { MessagesModule } from './messages/messages.module';
+import { ValidationPipe } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+
+import { MessagesModule } from './messages/messages.module';
 
 const bootstrap = async () => {
   const app = await NestFactory.create(MessagesModule);
+
+  app.useGlobalPipes(new ValidationPipe());
 
   const swaggerConfig = new DocumentBuilder()
     .setTitle(`Simple JSON Message App API`)
