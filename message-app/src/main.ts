@@ -3,6 +3,7 @@ import { ValidationPipe } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 import { MessagesModule } from './messages/messages.module';
+// import {  } from 'express';
 
 const bootstrap = async () => {
   const app = await NestFactory.create(MessagesModule);
@@ -16,6 +17,15 @@ const bootstrap = async () => {
 
   const swaggerDocs = SwaggerModule.createDocument(app, swaggerConfig);
   SwaggerModule.setup('/swagger', app, swaggerDocs);
+
+  app.use((req, res, next) => {
+    console.log(
+      `[CustomLog] ${new Date().toLocaleString()} Requested URL: ${
+        req.originalUrl
+      }`,
+    );
+    next();
+  });
 
   await app.listen(3000);
 };
