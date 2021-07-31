@@ -10,6 +10,11 @@ export class UsersService {
   ) {}
 
   create(email: string, password: string) {
+    /**
+     * `this.repo.save({ email, password })`로도 바로 row 생성할 수 있지만,
+     *  class-validator가 작동하기 위해선 instance가 생성되어야 하므로 create를 거쳐야 함
+     *  또한 AfterInsert 등 Hooks가 동작하려면 instance가 생성되어야 함
+     */
     const user = this.repo.create({ email, password });
     return this.repo.save(user);
   }
